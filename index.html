@@ -62,12 +62,12 @@
       </section>
       <div class="comments">
         <ul>
-          <li ng-show="post.show" ng-repeat="comment in post.comments">{{comment}}</li>
+          <li ng-show="post.show" ng-repeat="comment in post.comments track by $index">{{comment}}</li>
         </ul>
         <form class="makecomment" ng-show="post.show">
-          <label><input type="text" ng-model="name" placeholder="your name"></label>
+          <label><input type="text" ng-model="username" placeholder="your name"></label>
           <label><input class="commenttext" type="text" ng-model="content" placeholder="comment"></label>
-          <button class="newcomment" ng-click="makeComment(post.id, name, content)" ng-mouseenter="hovernewcomment = true" ng-mouseleave="hovernewcomment = false" ng-class="{makepost: hovernewcomment}"> <i class="fa fa-plus"></i></button>
+          <button class="newcomment" ng-click="makeComment(post.id, username, content)" ng-mouseenter="hovernewcomment = true" ng-mouseleave="hovernewcomment = false" ng-class="{makepost: hovernewcomment}"> <i class="fa fa-plus"></i></button>
        </form>
       </div>
     </li>

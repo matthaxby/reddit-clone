@@ -84,7 +84,6 @@ footer {
 
 .comments {
   width: 50%;
-  max-height: 200px;
   position: relative;
   margin: 10px;
   padding-left: 2%;
@@ -92,6 +91,7 @@ footer {
   background: rgb(241, 224, 155);
   border-radius: 30px;
   ul {
+    max-height: 200px;
     overflow: scroll;
     li {
       margin-top: 8px;
