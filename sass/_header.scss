@@ -1,0 +1,94 @@
+header {
+  height: 65px;
+  position: relative;
+  background: -webkit-gradient(radial, 6% 20%, 0, 6% 40%, 300, from(rgb(72, 131, 201)), to(rgb(61, 99, 144)));
+  border-bottom: 2px solid rgb(41, 65, 101);
+  color: rgb(242, 190, 35);
+  nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  li {
+    display: inline-block;
+    margin-left: 20px;
+    float: left;
+    button {
+      border: none;
+      background: none;
+      font-size: 15px;
+      color: rgb(242, 190, 35);
+    }
+    .logo {
+      font-size: 20px;
+      margin-right: 30px;
+      text-shadow: -2px 2px 2px rgb(40, 56, 91);
+      transform: translate(2px, -2px);
+      transition: .2s;
+    }
+    .logooff {
+      text-shadow: none;
+      transform: none;
+      color: rgb(222, 170, 15)
+    }
+    input {
+      background: rgba(139,	176, 214, 1);
+      margin-left: 20px;
+      border: none;
+      height: 20px;
+      border-radius: 5px;
+      text-indent: 5px;
+      color: rgb(255, 255, 255);
+    }
+
+    select {
+      background: transparent;
+      height: 20px;
+      width: 80px;
+      text-indent: 5px;
+      color: rgb(242, 190, 35);
+      border: none;
+      font-size: 15px;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .fa-search, .search {
+      color: rgb(242, 190, 35);
+      transition: .2s;
+    }
+    .searchon {
+      text-shadow: -2px 2px 2px rgb(40, 56, 91);
+      transform: translate(2px, -2px);
+    }
+    .pluson, {
+      text-shadow: -2px 2px 2px rgb(40, 56, 91);
+      transform: translate(2px, -2px);
+      transition: .2s;
+    }
+    .fa-plus {
+      color: rgb(242, 190, 35);
+    }
+  }
+  .dropdown {
+    transform: translate(2px, -2px);
+    transition: .2s;
+    text-shadow: -2px 2px 2px rgb(40, 56, 91);
+  }
+  .texton {
+    transform: translate(2px, -2px);
+    transition: .2s;
+    box-shadow: -2px 2px 2px rgb(40, 56, 91);
+  }
+}
+
+.headersearch {
+  background: -webkit-gradient(radial, 18% 20%, 0, 18% 40%, 300, from(rgb(72, 131, 201)), to(rgb(61, 99, 144)));
+}
+
+.headerplus {
+  background: -webkit-gradient(radial, 25% 27%, 0, 27% 40%, 300, from(rgb(72, 131, 201)), to(rgb(61, 99, 144)));
+}
+
+.headersort {
+  background: -webkit-gradient(radial, 35% 20%, 0, 35% 40%, 300, from(rgb(72, 131, 201)), to(rgb(61, 99, 144)));
+}

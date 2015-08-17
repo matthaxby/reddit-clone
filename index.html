@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="reddit">
+<head>
+  <meta charset="UTF-8">
+  <title>Reddit Clone</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="moment/bower_components/moment/moment.js"></script>
+  <script src="moment/bower_components/angular-moment/angular-moment.js"></script>
+</head>
+<body ng-controller="RedditController">
+  <header ng-class="{headersearch: hoversearch, headerplus: hoverplus, headersort: hoversort}">
+    <nav>
+      <ul>
+        <li>
+          <h1 ng-class="{logooff: hoversearch || hoverplus || hoversort}" class="logo">Reddit Clone</h1>
+        </li>
+        <li>
+          <label ng-mouseenter="hoversearch = true" ng-mouseleave="hoversearch = false">
+            <i ng-class="{searchon: hoversearch}" class="fa fa-search"></i><input type="text" ng-model="search" ng-class="{texton: hoversearch}">
+          </label>
+        </li>
+        <li>
+          <button ng-mouseenter="hoverplus = true" ng-mouseleave="hoverplus = false" ng-click="submitPost()">
+            <i ng-class="{pluson: hoverplus}" class="fa fa-plus"></i>
+          </button>
+        </li>
+        <li>
+          <select ng-model="sortby" ng-class="{dropdown: hoversort}" ng-mouseenter="hoversort = true" ng-mouseleave="hoversort = false">
+            <option value="" disabled selected>sort by</option>
+            <option value="-time">Date</option>
+            <option value="-likes">Votes</option>
+            <option value="title">Title</option>
+          </select>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <ul class="main" ng-class="{blur: posting}" >
+    <li class="postings" ng-repeat="post in posts | filter:search | orderBy:sortby">
+      <section class ="post">
+        <div class="image" style="background-image: url({{post.image}});" alt="pic">
+        </div>
+        <article>
+          <h1>{{post.title}} | </h1>
+          <button class="vote" ng-click="upVote(post.id)"  ng-mouseenter="hovervote = true" ng-mouseleave="hovervote = false" ng-class="{makepost: hovervote}">
+            <i class="fa fa-arrow-up"></i>
+          </button>
+          <button class="vote" ng-click="downVote(post.id)" ng-mouseenter="hoverdownvote = true" ng-mouseleave="hoverdownvote = false" ng-class="{makepost: hoverdownvote}">
+            <i class="fa fa-arrow-down"></i>
+          </button>
+          <h1 ng-class="{good: post.likes > 0, bad: post.likes < 0, none: post.likes === 0}">{{post.likes}}</h1>
+          <br>
+          <h3>By {{post.author}}</h3>
+          <p>{{post.description}}</p>
+          <footer>
+            <span class="date">{{post.time | amCalendar}} | </span>
+            <button ng-click="showComments(post.id)" ng-mouseenter="hovercomments = true" ng-mouseleave="hovercomments = false" ng-class="{makepost: hovercomments}">{{post.comments.length}} Comments</button>
+          </footer>
+        </article>
+      </section>
+      <div class="comments">
+        <ul>
+          <li ng-show="post.show" ng-repeat="comment in post.comments">{{comment}}</li>
+        </ul>
+        <form class="makecomment" ng-show="post.show">
+          <label><input type="text" ng-model="name" placeholder="your name"></label>
+          <label><input class="commenttext" type="text" ng-model="content" placeholder="comment"></label>
+          <button class="newcomment" ng-click="makeComment(post.id, name, content)" ng-mouseenter="hovernewcomment = true" ng-mouseleave="hovernewcomment = false" ng-class="{makepost: hovernewcomment}"> <i class="fa fa-plus"></i></button>
+       </form>
+      </div>
+    </li>
+  </ul>
+  <div class="submitform">
+    <form ng-show="posting" name="submitform">
+      <button class="close" ng-click="close()" ng-mouseenter="hoverclose = true" ng-mouseleave="hoverclose = false"
+      ng-class="{makepost: hoverclose}"><i class="fa fa-times"></i></button>
+      <input type="text" name="title" ng-model="title" placeholder="Title" required ng-class="{invalid: submitform.title.$error.required}">
+      <input type="text" ng-model="author" name="author" placeholder="Author" required ng-class="{invalid: submitform.author.$error.required}">
+      <input type="text" ng-model="image" placeholder="Image URL" name="image" required ng-class="{invalid: submitform.image.$error.required}">
+      <textarea ng-model="description" cols="30" rows="10" name="description" required ng-class="{invalid: submitform.description.$error.required}" placeholder="Description"></textarea>
+      <button ng-disabled="submitform.$invalid" ng-click="newPost(title, author, image, description)" ng-mouseenter="hoverpost = true" ng-mouseleave="hoverpost = false" ng-class="{makepost: hoverpost}">POST</button>
+      <span ng-show="submitform.$invalid" class="incomplete"> * Fill out all fields to post!</span>
+    </form>
+  </div>
+  <script src="./javascripts/app.js"></script>
+  <script src="./javascripts/controllers.js"></script>
+  <script src="./javascripts/directives.js"></script>
+  <script src="./javascripts/filters.js"></script>
+  <script src="./javascripts/services.js"></script>
+</body>
+</html>

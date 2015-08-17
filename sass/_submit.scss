@@ -1,0 +1,55 @@
+.submitform {
+  width: 40%;
+  position: absolute;
+  top: 100px;
+  left: 30%;
+  form {
+    width: 70%;
+    position: absolute;
+    margin: 10%;
+    padding: 40px;
+    background: rgb(241, 224, 155);
+    border-radius: 20px;
+    animation-duration: .2s;
+    animation-name: grow;
+    input {
+      height: 20px;
+    }
+    input, textarea {
+      width: 100%;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+    button {
+      margin-left: auto;
+      margin-right: auto;
+      border: none;
+      background: none;
+      font-size: 20px;
+      color: rgb(61, 99, 144);
+    }
+  }
+}
+
+.makepost {
+  transform: translate(2px, -2px);
+  transition: .2s;
+  text-shadow: -2px 2px 2px rgb(121, 100, 45);
+}
+
+.incomplete {
+  text-align: center;
+  color: rgb(190, 102, 65);
+  font-size: 15px;
+}
+
+.invalid {
+  border: 1px solid rgb(190, 102, 65);
+}
+
+.close {
+  color: rgb(61, 99, 144);
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}

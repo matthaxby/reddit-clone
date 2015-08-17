@@ -1,0 +1,141 @@
+form * {
+  display: block;
+}
+
+body {
+  background: rgb(231, 204, 135);
+  color: rgb(41, 79, 124);
+}
+
+button {
+  color: rgb(41, 79, 124);
+}
+
+.image-wrapper {
+  height: 200px;
+  width: 200px;
+  display:inline-block;
+}
+
+.image {
+  display:inline-block;
+  width: 220px;
+  height: 220px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.post {
+  width: 100%;
+  margin-top: 20px;
+  background: rgb(241, 224, 155);
+  border-radius: 40px;
+  overflow: hidden;
+}
+
+.main {
+  width: 75%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  transition: .2s;
+}
+
+.blur {
+  -webkit-filter: brightness(90%);
+}
+
+article {
+  width: 75%;
+  height: 200px;
+  display: inline-block;
+  position: absolute;
+  padding: 1%;
+  padding-left: 3%;
+  h3 {
+    float: right;
+  }
+  p {
+    display: block;
+    margin-top: 3%;
+    overflow: scroll;
+  }
+  h1, .vote {
+    display: inline-block;
+    font-size: 25px;
+  }
+  button {
+    display: inline;
+    padding: 0;
+    border: none;
+    background: transparent;
+    font-size: 20px;
+  }
+  .date {
+    font-size: 20px;
+  }
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+}
+
+.comments {
+  width: 50%;
+  max-height: 200px;
+  position: relative;
+  margin: 10px;
+  padding-left: 2%;
+  float: right;
+  background: rgb(241, 224, 155);
+  border-radius: 30px;
+  ul {
+    overflow: scroll;
+    li {
+      margin-top: 8px;
+    }
+  }
+}
+
+.makecomment * {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: inline-block;
+  border-radius: 3px;
+  border: none;
+  text-indent: 5px;
+}
+
+.commenttext {
+  width: 200px;
+}
+
+.good {
+  color: green;
+}
+
+.bad {
+  color: red;
+}
+
+.none {
+  color: rgb(61, 99, 144);
+}
+
+.newcomment {
+  border: none;
+  background: none;
+  font-size: 15px;
+}
+
+
+@keyframes grow {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
