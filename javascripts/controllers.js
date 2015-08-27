@@ -1,31 +1,42 @@
-var app = angular.module('reddit', ['angularMoment'])
 
-
-app.controller('RedditController', function($scope) {
+app.controller('RedditController', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
+  var firedata = new Firebase('https://mh-reddit-clone.firebaseio.com/posts')
+  $scope.posts = $firebaseArray(firedata)
   $scope.search = ''
   $scope.posting = false
   $scope.submitPost = function() {
     $scope.posting = true
   }
   $scope.sortby = '-time'
-  $scope.posts = []
   $scope.newPost = function(title, author, image, description) {
-    $scope.posts.push({'title': title, 'author': author, 'image': image, 'description': description, 'time': new Date(), 'likes': 0, 'comments': [], 'id': $scope.posts.length, show: false})
+    var now = new Date()
+    $scope.posts.$add({'title': title, 'author': author, 'image': image, 'description': description, 'time': now.toString(), 'likes': 0, 'comments': [], 'id': $scope.posts.length, show: false})
     $scope.posting = false
   }
-  $scope.upVote = function(id) {
-    $scope.posts[id].likes++
+  $scope.upVote = function(post) {
+    post.likes++
+    $scope.posts.$save(post)
   }
-  $scope.downVote = function(id) {
-    $scope.posts[id].likes--
+  $scope.downVote = function(post) {
+    post.likes--
+    $scope.posts.$save(post)
   }
-  $scope.showComments = function(id) {
-    $scope.posts[id].show = !$scope.posts[id].show
+  $scope.showComments = function(post) {
+    post.show = !post.show
+    $scope.posts.$save(post)
   }
-  $scope.makeComment = function(id, name, content) {
-    $scope.posts[id].comments.push(name + ': ' + content)
+  $scope.makeComment = function(post, name, content) {
+    console.log(post)
+    if (post.comments === undefined) {
+      post.comments = []
+    }
+    post.comments.push(name + ': ' + content)
+    $scope.posts.$save(post)
+    // $scope.posts.$save(post)
+    // $scope.name = ''
+    // $scope.content = ''
   }
   $scope.close = function() {
     $scope.posting = false
   }
-})
+}])

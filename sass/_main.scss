@@ -59,7 +59,11 @@ article {
   p {
     display: block;
     margin-top: 3%;
+    max-height: 100px;
     overflow: scroll;
+  }
+  p::-webkit-scrollbar {
+    display: none;
   }
   h1, .vote {
     display: inline-block;
@@ -96,6 +100,9 @@ footer {
     li {
       margin-top: 8px;
     }
+  }
+  ul::-webkit-scrollbar {
+    display: none;
   }
 }
 
