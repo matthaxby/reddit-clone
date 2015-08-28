@@ -1,4 +1,3 @@
-
 app.controller('RedditController', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
   var firedata = new Firebase('https://mh-reddit-clone.firebaseio.com/posts')
   $scope.posts = $firebaseArray(firedata)
@@ -26,15 +25,11 @@ app.controller('RedditController', ['$scope', '$firebaseArray', function($scope,
     $scope.posts.$save(post)
   }
   $scope.makeComment = function(post, name, content) {
-    console.log(post)
     if (post.comments === undefined) {
       post.comments = []
     }
     post.comments.push(name + ': ' + content)
     $scope.posts.$save(post)
-    // $scope.posts.$save(post)
-    // $scope.name = ''
-    // $scope.content = ''
   }
   $scope.close = function() {
     $scope.posting = false
