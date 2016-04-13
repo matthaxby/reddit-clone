@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Reddit Clone</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="style.css">
-  <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-  <script src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
+  <script src="moment/bower_components/moment/moment.js"></script>
+  <script src="moment/bower_components/angular-moment/angular-moment.js"></script>
 </head>
 <body ng-controller="RedditController">
   <header ng-class="{headersearch: hoversearch, headerplus: hoverplus, headersort: hoversort}">
@@ -43,10 +44,10 @@
         </div>
         <article>
           <h1>{{post.title}} | </h1>
-          <button class="vote" ng-click="upVote(post)"  ng-mouseenter="hovervote = true" ng-mouseleave="hovervote = false" ng-class="{makepost: hovervote}">
+          <button class="vote" ng-click="upVote(post.id)"  ng-mouseenter="hovervote = true" ng-mouseleave="hovervote = false" ng-class="{makepost: hovervote}">
             <i class="fa fa-arrow-up"></i>
           </button>
-          <button class="vote" ng-click="downVote(post)" ng-mouseenter="hoverdownvote = true" ng-mouseleave="hoverdownvote = false" ng-class="{makepost: hoverdownvote}">
+          <button class="vote" ng-click="downVote(post.id)" ng-mouseenter="hoverdownvote = true" ng-mouseleave="hoverdownvote = false" ng-class="{makepost: hoverdownvote}">
             <i class="fa fa-arrow-down"></i>
           </button>
           <h1 ng-class="{good: post.likes > 0, bad: post.likes < 0, none: post.likes === 0}">{{post.likes}}</h1>
@@ -55,18 +56,18 @@
           <p>{{post.description}}</p>
           <footer>
             <span class="date">{{post.time | amCalendar}} | </span>
-            <button ng-click="showComments(post)" ng-mouseenter="hovercomments = true" ng-mouseleave="hovercomments = false" ng-class="{makepost: hovercomments}">{{post.comments.length}} Comments</button>
+            <button ng-click="showComments(post.id)" ng-mouseenter="hovercomments = true" ng-mouseleave="hovercomments = false" ng-class="{makepost: hovercomments}">{{post.comments.length}} Comments</button>
           </footer>
         </article>
       </section>
       <div class="comments">
         <ul>
-          <li ng-show="post.show" ng-init="post.show = false" ng-repeat="comment in post.comments track by $index">{{comment}}</li>
+          <li ng-show="post.show" ng-repeat="comment in post.comments">{{comment}}</li>
         </ul>
         <form class="makecomment" ng-show="post.show">
           <label><input type="text" ng-model="name" placeholder="your name"></label>
           <label><input class="commenttext" type="text" ng-model="content" placeholder="comment"></label>
-          <button class="newcomment" ng-click="makeComment(post, name, content); name=''; content=''" ng-mouseenter="hovernewcomment = true" ng-mouseleave="hovernewcomment = false" ng-class="{makepost: hovernewcomment}"> <i class="fa fa-plus"></i></button>
+          <button class="newcomment" ng-click="makeComment(post.id, name, content)" ng-mouseenter="hovernewcomment = true" ng-mouseleave="hovernewcomment = false" ng-class="{makepost: hovernewcomment}"> <i class="fa fa-plus"></i></button>
        </form>
       </div>
     </li>
@@ -83,10 +84,10 @@
       <span ng-show="submitform.$invalid" class="incomplete"> * Fill out all fields to post!</span>
     </form>
   </div>
-  <script src="moment/bower_components/moment/moment.js"></script>
-  <script src="moment/bower_components/angular-moment/angular-moment.js"></script>
-  <script src="moment/bower_components/angular/angular.js"></script>
   <script src="./javascripts/app.js"></script>
   <script src="./javascripts/controllers.js"></script>
+  <script src="./javascripts/directives.js"></script>
+  <script src="./javascripts/filters.js"></script>
+  <script src="./javascripts/services.js"></script>
 </body>
 </html>

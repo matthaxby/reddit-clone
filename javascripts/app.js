@@ -1,1 +1,1 @@
-var app = angular.module('reddit', ['angularMoment', 'firebase'])
+var app = angular.module('reddit', [])

@@ -96,10 +96,7 @@ article {
   article p {
     display: block;
     margin-top: 3%;
-    max-height: 100px;
     overflow: scroll; }
-  article p::-webkit-scrollbar {
-    display: none; }
   article h1, article .vote {
     display: inline-block;
     font-size: 25px; }
@@ -118,6 +115,7 @@ footer {
 
 .comments {
   width: 50%;
+  max-height: 200px;
   position: relative;
   margin: 10px;
   padding-left: 2%;
@@ -125,12 +123,9 @@ footer {
   background: #f1e09b;
   border-radius: 30px; }
   .comments ul {
-    max-height: 200px;
     overflow: scroll; }
     .comments ul li {
       margin-top: 8px; }
-  .comments ul::-webkit-scrollbar {
-    display: none; }
 
 .makecomment * {
   margin-top: 5px;
